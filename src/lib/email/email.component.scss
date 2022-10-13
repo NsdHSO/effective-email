@@ -1,0 +1,132 @@
+.wrapper {
+  margin-top: 1rem;
+
+  &__left-side {
+
+    margin-bottom: 2rem;
+    font-size: 25px;
+    display: flex;
+
+    span {
+      padding: 2rem 0;
+    }
+  }
+
+  &__right-side {
+    display: flex;
+    gap: 2rem;
+
+    & > div:nth-child(n) {
+      padding: 1.3rem;
+      border-radius: 15px;
+
+    }
+
+    &__menu {
+      width: 20%;
+
+
+      &__new {
+        button {
+          padding: 0.6rem;
+          width: 100%;
+          background: #5b8dff;
+          color: #fafaff;
+          line-height: 0;
+
+          ::ng-deep {
+            mat-icon {
+              width: 16px;
+              height: 16px;
+            }
+          }
+        }
+      }
+
+      &__email-item {
+        & > div:first-child {
+          font-weight: 600;
+          padding: 1rem 0;
+          font-size: 15px;
+        }
+
+        &__sub-item {
+          padding-bottom: 1.5rem;
+
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.2rem 1rem 0.2rem 0.4rem;
+            color: #57585a;
+            font-weight: 500;
+
+            ::ng-deep {
+              mat-icon {
+                width: 18px;
+                height: 18px;
+              }
+            }
+
+            & > div:first-child {
+              width: 15%;
+            }
+
+
+          }
+
+          & > div:hover {
+            background: #e6eeff;
+            border-radius: 8px;
+            color: #5b8dff !important;
+
+            div {
+              color: #5b8dff !important;
+
+            }
+          }
+
+
+        }
+
+        &__new-label {
+
+          div {
+            width: auto !important;
+            display: flex;
+            align-items: center;
+            padding: 0.2rem 1rem 0.2rem 0.4rem;
+            color: #57585a;
+            font-weight: 500;
+
+            button {
+              padding: 0.6rem;
+              width: 100%;
+              background: #585d31;
+              color: #cdcdf6;
+              line-height: 0;
+
+              ::ng-deep {
+                mat-icon {
+                  width: 16px;
+                  height: 16px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &__content {
+      width: 80%;
+
+      ::ng-deep {
+        mat-icon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+}

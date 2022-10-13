@@ -1,1 +1,98 @@
-<p>email works!</p>
+<div class="wrapper">
+  <div class="mat-elevation-z2 wrapper__left-side">
+    <span>
+      Imbox
+      </span>
+  </div>
+  <div class="wrapper__right-side">
+    <div class="mat-elevation-z2 wrapper__right-side__menu">
+      <div class="wrapper__right-side__menu__new">
+        <button mat-button>
+          <mat-icon
+            [svgIcon]="'fa_solid:plus'"
+            class="container__header__icon"
+          ></mat-icon>
+          Compose
+        </button>
+      </div>
+      <div class="wrapper__right-side__menu__email-item">
+        <div>
+        <span>
+          My Email
+        </span>
+        </div>
+        <div class="wrapper__right-side__menu__email-item__sub-item">
+          <div *ngFor="let subItem of [].constructor(5)">
+            <div>
+              <mat-icon
+                [svgIcon]="'fa_solid:plus'"
+                class="container__header__icon"
+              ></mat-icon>
+              <span>
+                Yup
+              </span>
+            </div>
+            <span>
+              number
+            </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+        <span>
+          Label
+        </span>
+        </div>
+        <div class="wrapper__right-side__menu__email-item__sub-item">
+          <div *ngFor="let subItem of [].constructor(5)">
+            <div>
+              <mat-icon
+                [svgIcon]="'fa_solid:plus'"
+                class="container__header__icon"
+              ></mat-icon>
+              <span>
+                Yup
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper__right-side__menu__email-item__new-label">
+          <div>
+            <button mat-button>
+              <mat-icon
+                [svgIcon]="'fa_solid:plus'"
+                class="container__header__icon"
+              ></mat-icon>
+              <span>
+                Create new Label
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mat-elevation-z2 wrapper__right-side__content jumbotron">
+      <div>
+        <div class="d-flex justify-content-between px-3">
+          <div class="rounded-5 bg-secondary bg-opacity-25 px-3 py-2">
+            <mat-icon
+              [svgIcon]="'fa_brands:searchengin'"
+              class="container__header__icon"
+            ></mat-icon>
+            <input class="bg-secondary bg-opacity-10 rounded-2  px-1 text-secondary" style="outline: none" />
+          </div>
+          <div>
+            <mat-icon *ngFor="let icon of [].constructor(3)"
+                      [svgIcon]="'fa_solid:plus'"
+                      class="container__header__icon"
+            ></mat-icon>
+          </div>
+        </div>
+        <div>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

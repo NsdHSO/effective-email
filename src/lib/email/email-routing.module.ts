@@ -1,14 +1,18 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
+import {InboxComponent} from "./component";
 import {EmailComponent} from "./email.component";
 
 const routes : Routes = [
   {
     path     : "",
     component: EmailComponent,
-    resolve  : {
-      // data: GetAllToDoResolver,
-    },
+    children : [
+      {
+        path     : "",
+        component: InboxComponent,
+      },
+    ],
   },
 ];
 

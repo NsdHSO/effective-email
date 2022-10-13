@@ -1,0 +1,26 @@
+@mixin setColorAndBg($color, $bg) {
+  color: $color;
+  background: $bg;
+  font-weight: 400;
+}
+
+.traffic-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.primary {
+  @include setColorAndBg(#19bca4, #c2ebeb)
+}
+
+.work {
+  @include setColorAndBg(#fca467, #f5e5dd)
+}
+
+.friends {
+  @include setColorAndBg(#dd78ff, #f6deff)
+}
+
+.social {
+  @include setColorAndBg(#5a8cff, #dee8ff)
+}
