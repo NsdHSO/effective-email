@@ -1,5 +1,5 @@
-<div class="container pt-4">
-  <div *ngFor="let subItem of [].constructor(5)" class="border border-2">
+<div class="container pt-4" *ngIf="emails">
+  <div *ngFor="let subItem of (emails | async)?.emails" class="border border-2 ps-4">
     <div class="d-flex w-100 row py-3 align-items-center">
       <mat-checkbox class="px-2 col-1 w-auto"></mat-checkbox>
       <div class="col-1 d-flex w-auto">
@@ -9,16 +9,16 @@
       ></mat-icon>
       </div>
       <span class="col-2 fw-semibold">
-                name from who
+                {{subItem.title}}
               </span>
       <div class="col-1">
-      <lib-traffic-light [stateOfTraffic]="0"></lib-traffic-light>
+      <lib-traffic-light [stateOfTraffic]="subItem"></lib-traffic-light>
       </div>
       <span class="col-6">
-        asdadsasd
+        {{subItem.description.description}}
       </span>
       <span class="col-1">
-        8:29 PM
+        {{subItem.timestamp| date}}
       </span>
     </div>
   </div>

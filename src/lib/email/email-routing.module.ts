@@ -2,23 +2,25 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {InboxComponent} from "./component";
 import {EmailComponent} from "./email.component";
+import {EmailResolver} from "./utils/service/email.resolver";
 
 const routes : Routes = [
   {
-    path     : "",
+    path: "",
     component: EmailComponent,
-    children : [
+    children: [
       {
-        path     : "",
+        path: "",
         component: InboxComponent,
+        resolve: {dataEmail: EmailResolver},
       },
     ],
   },
 ];
 
 @NgModule({
-            imports: [
-              RouterModule.forChild(routes),
-            ],
-          })
+  imports: [
+    RouterModule.forChild(routes),
+  ],
+})
 export class EmailRoutingModule {}
