@@ -1,4 +1,7 @@
-import {Component, Input} from "@angular/core";
+import {
+  Component,
+  Input,
+} from "@angular/core";
 
 @Component({
   selector: "lib-traffic-light",
@@ -8,12 +11,10 @@ import {Component, Input} from "@angular/core";
 export class TrafficLightComponent {
   @Input()
   stateOfTraffic : any = 2;
-  public label         = "";
+  public label = "";
 
   public setClass() : string {
-    debugger
     if(this.stateOfTraffic.label === 0) {
-      debugger
       this.label = "Primary";
       return "primary";
     }

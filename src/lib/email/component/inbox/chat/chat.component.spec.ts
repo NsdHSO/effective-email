@@ -2,19 +2,19 @@ import {
   ComponentFixture,
   TestBed,
 } from "@angular/core/testing";
-import {TrafficLightComponent} from "./traffic-light.component";
+import {ChatComponent} from "./chat.component";
 
 describe(
-  "TrafficLightComponent",
+  "ChatComponent",
   () => {
-    let component : TrafficLightComponent;
-    let fixture : ComponentFixture<TrafficLightComponent>;
+    let component : ChatComponent;
+    let fixture : ComponentFixture<ChatComponent>;
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        declarations: [TrafficLightComponent],
+        declarations: [ChatComponent],
       })
         .compileComponents();
-      fixture = TestBed.createComponent(TrafficLightComponent);
+      fixture = TestBed.createComponent(ChatComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });

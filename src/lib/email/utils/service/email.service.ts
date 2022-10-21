@@ -1,7 +1,14 @@
 import {HttpClient} from "@angular/common/http";
-import {Inject, Injectable} from "@angular/core";
-import {of, Subject} from "rxjs";
-import {Email, EmailWrapper} from "../emailWrapper";
+import {
+  Inject,
+  Injectable,
+} from "@angular/core";
+import {
+  of,
+  Subject,
+} from "rxjs";
+import {EmailWrapper} from "../emailWrapper";
+import {WebsocketService} from "./websocket.service";
 
 @Injectable({
   providedIn: "root",
@@ -9,7 +16,9 @@ import {Email, EmailWrapper} from "../emailWrapper";
 export class EmailService {
   public emails : Subject<EmailWrapper> = new Subject<EmailWrapper>();
 
-  constructor(private readonly _httpClient : HttpClient, @Inject("env") private environment : any) { }
+  constructor(private readonly _httpClient : HttpClient, @Inject(
+    "env") private environment : any, private readonly _socket : WebsocketService) {
+  }
 
   public getEmails(item = 10, page = 0) {
     this._httpClient.get<EmailWrapper>(`${this.environment.api}/email/${item}/${page}`)
@@ -22,14 +31,14 @@ export class EmailService {
       });
   }
 
-  public getFilteredData(query: string){
+  public getFilteredData(query : string) {
     this._httpClient.get<EmailWrapper>(`${this.environment.api}/email/search/${query}`)
       .subscribe(emails => {
         if(emails != undefined) {
           const newEmail = {
             emails: emails as any,
-            total: 0
-          } as EmailWrapper
+            total: 0,
+          } as EmailWrapper;
           debugger
           this.emails.next(newEmail);
           return of(true);

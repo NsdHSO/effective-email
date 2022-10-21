@@ -80,25 +80,31 @@
               [svgIcon]="'fa_brands:searchengin'"
               class="container__header__icon"
             ></mat-icon>
-            <input class="bg-secondary bg-opacity-10 rounded-2  px-1 text-secondary"
-                   style="outline: none" [(ngModel)]="inputFilter"
-                   type="text" name="userQuestion" id="userQuestions"
-                   (ngModelChange)="this.userQuestionUpdate.next($event)"/>
+            <input (ngModelChange)="this.userQuestionUpdate.next($event)"
+                   [(ngModel)]="inputFilter"
+                   class="bg-secondary bg-opacity-10 rounded-2  px-1 text-secondary"
+                   id="userQuestions"
+                   name="userQuestion"
+                   style="outline: none"
+                   type="text"/>
           </div>
           <div class="pe-3">
-            <button mat-button *ngFor="let icon of [].constructor(3)">
-            <mat-icon
-                      [svgIcon]="'fa_solid:plus'"
-                      class="container__header__icon"
-            ></mat-icon>
+            <button *ngFor="let icon of [].constructor(3)"
+                    mat-button>
+              <mat-icon
+                [svgIcon]="'fa_solid:plus'"
+                class="container__header__icon"
+              ></mat-icon>
             </button>
           </div>
         </div>
         <div>
           <router-outlet></router-outlet>
         </div>
-        <div class="d-flex justify-content-end pt-3 pe-3">
-          <button mat-button>
+        <div *ngIf="!chatId"
+             class="d-flex justify-content-end pt-3 pe-3">
+          <button (click)="trgger()"
+                  mat-button>
             <mat-icon
               [svgIcon]="'fa_solid:arrow-left'"
               class="container__header__icon"
@@ -115,3 +121,4 @@
     </div>
   </div>
 </div>
+

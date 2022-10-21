@@ -1,7 +1,14 @@
-import {Component, OnInit} from "@angular/core";
+import {
+  Component,
+  OnInit,
+} from "@angular/core";
+import {Router} from "@angular/router";
 import {Subject} from "rxjs";
 import {EmailService} from "../../utils";
-import {EmailWrapper} from "../../utils/emailWrapper";
+import {
+  Email,
+  EmailWrapper,
+} from "../../utils/emailWrapper";
 
 @Component({
   selector: "lib-inbox",
@@ -11,11 +18,18 @@ import {EmailWrapper} from "../../utils/emailWrapper";
 export class InboxComponent implements OnInit {
   emails : Subject<EmailWrapper>;
 
-  constructor(private readonly _emailService : EmailService) {
+  constructor(
+    private readonly _emailService : EmailService,
+    private readonly _router : Router,
+  ) {
     this.emails = new Subject<EmailWrapper>();
   }
 
   ngOnInit() : void {
     this.emails = this._emailService.emails;
+  }
+
+  public openInChat(subItem : Email) : void {
+    this._router.navigateByUrl(`${subItem.id}`);
   }
 }

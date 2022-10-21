@@ -1,21 +1,23 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 import {
-  Router, Resolve,
+  ActivatedRouteSnapshot,
+  Resolve,
   RouterStateSnapshot,
-  ActivatedRouteSnapshot
-} from '@angular/router';
-import { Observable, of } from 'rxjs';
+} from "@angular/router";
+import {
+  Observable,
+  of,
+} from "rxjs";
 import {EmailService} from "./email.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class EmailResolver implements Resolve<boolean> {
+  constructor(private readonly _emailService : EmailService) {}
 
-  constructor(private readonly _emailService: EmailService) {}
-
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    this._emailService.getEmails()
+  resolve(route : ActivatedRouteSnapshot, state : RouterStateSnapshot) : Observable<boolean> {
+    this._emailService.getEmails();
     return of(true);
   }
 }

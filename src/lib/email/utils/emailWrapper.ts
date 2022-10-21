@@ -1,6 +1,6 @@
 export interface EmailWrapper {
   emails : Email[];
-  total: number
+  total : number;
 }
 
 export interface Message {
@@ -8,6 +8,7 @@ export interface Message {
 }
 
 export interface Email {
+  id : number;
   title : string;
   vote : boolean;
   label : string;

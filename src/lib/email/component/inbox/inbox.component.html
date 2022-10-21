@@ -1,18 +1,21 @@
-<div class="container pt-4" *ngIf="emails">
-  <div *ngFor="let subItem of (emails | async)?.emails" class="border border-2 ps-4">
-    <div class="d-flex w-100 row py-3 align-items-center">
+<div *ngIf="emails"
+     class="container pt-4 overflow-auto">
+  <div *ngFor="let subItem of (emails | async)?.emails"
+       class="border border-2 ps-4">
+    <div (click)="openInChat(subItem)"
+         class="d-flex w-100 row py-3 align-items-center">
       <mat-checkbox class="px-2 col-1 w-auto"></mat-checkbox>
       <div class="col-1 d-flex w-auto">
-      <mat-icon
-        [svgIcon]="'fa_solid:star'"
-        class="container__header__icon"
-      ></mat-icon>
+        <mat-icon
+          [svgIcon]="'fa_solid:star'"
+          class="container__header__icon"
+        ></mat-icon>
       </div>
       <span class="col-2 fw-semibold">
                 {{subItem.title}}
               </span>
       <div class="col-1">
-      <lib-traffic-light [stateOfTraffic]="subItem"></lib-traffic-light>
+        <lib-traffic-light [stateOfTraffic]="subItem"></lib-traffic-light>
       </div>
       <span class="col-6">
         {{subItem.description.description}}
@@ -23,3 +26,4 @@
     </div>
   </div>
 </div>
+<router-outlet></router-outlet>

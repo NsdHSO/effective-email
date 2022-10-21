@@ -1,7 +1,11 @@
 @mixin setColorAndBg($color, $bg) {
-  color: $color;
-  background: $bg;
-  font-weight: 400;
+  span {
+    color: $color;
+    background: $bg;
+    font-weight: 400;
+    padding: .3rem;
+    border-radius: .5rem;
+  }
 }
 
 .traffic-container {
@@ -9,6 +13,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .primary {
   @include setColorAndBg(#19bca4, #c2ebeb)
 }
