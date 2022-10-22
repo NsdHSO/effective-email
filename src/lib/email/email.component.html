@@ -7,7 +7,8 @@
   <div class="wrapper__right-side">
     <div class="mat-elevation-z2 wrapper__right-side__menu">
       <div class="wrapper__right-side__menu__new">
-        <button mat-button>
+        <button mat-button
+                *ngIf="permission.inbox.actions.newEmail">
           <mat-icon
             [svgIcon]="'fa_solid:plus'"
             class="container__header__icon"
@@ -22,19 +23,23 @@
         </span>
         </div>
         <div class="wrapper__right-side__menu__email-item__sub-item">
-          <div *ngFor="let subItem of [].constructor(5)">
-            <div>
-              <mat-icon
-                [svgIcon]="'fa_solid:plus'"
-                class="container__header__icon"
-              ></mat-icon>
-              <span>
-                Yup
+          <div *ngFor="let subItem of permissionInbox.inboxAction"
+               class="pe-auto">
+            <div class="w-100"
+                 *ngIf="subItem.value">
+              <div>
+                <mat-icon
+                  [svgIcon]="'fa_solid:plus'"
+                  class="container__header__icon"
+                ></mat-icon>
+                <span>
+                {{subItem.key}}
               </span>
-            </div>
-            <span>
+              </div>
+              <span>
               number
             </span>
+            </div>
           </div>
         </div>
       </div>
@@ -45,14 +50,15 @@
         </span>
         </div>
         <div class="wrapper__right-side__menu__email-item__sub-item">
-          <div *ngFor="let subItem of [].constructor(5)">
-            <div>
+          <div *ngFor="let subItem of permissionInbox.labelAction">
+            <div
+              *ngIf="subItem.value">
               <mat-icon
                 [svgIcon]="'fa_solid:plus'"
                 class="container__header__icon"
               ></mat-icon>
               <span>
-                Yup
+                {{subItem.key}}
               </span>
             </div>
           </div>
@@ -103,8 +109,8 @@
         </div>
         <div *ngIf="!chatId"
              class="d-flex justify-content-end pt-3 pe-3">
-          <button (click)="trgger()"
-                  mat-button>
+          <button
+            mat-button>
             <mat-icon
               [svgIcon]="'fa_solid:arrow-left'"
               class="container__header__icon"

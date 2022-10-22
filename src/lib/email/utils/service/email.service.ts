@@ -1,23 +1,33 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
 import {
   Inject,
-  Injectable,
-} from "@angular/core";
+  Injectable
+} from '@angular/core';
+import {LocalStorageService} from 'ngx-driver';
 import {
   of,
-  Subject,
-} from "rxjs";
-import {EmailWrapper} from "../emailWrapper";
-import {WebsocketService} from "./websocket.service";
+  Subject
+} from 'rxjs';
+import {
+  EmailWrapper,
+  RootObject,
+  WrapperObject
+} from '../emailWrapper';
+import {WebsocketService} from './websocket.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class EmailService {
   public emails : Subject<EmailWrapper> = new Subject<EmailWrapper>();
+  public permission
 
   constructor(private readonly _httpClient : HttpClient, @Inject(
-    "env") private environment : any, private readonly _socket : WebsocketService) {
+      'env') private environment : any, private readonly _socket : WebsocketService,
+    private readonly _localStorage : LocalStorageService
+  ) {
+    this.permission = JSON.parse(_localStorage.geItem('permission')) as WrapperObject
+
   }
 
   public getEmails(item = 10, page = 0) {
@@ -37,7 +47,7 @@ export class EmailService {
         if(emails != undefined) {
           const newEmail = {
             emails: emails as any,
-            total: 0,
+            total: 0
           } as EmailWrapper;
           debugger
           this.emails.next(newEmail);

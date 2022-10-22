@@ -1,44 +1,47 @@
 import {
   Component,
   OnDestroy,
-  OnInit,
-} from "@angular/core";
+  OnInit
+} from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
   NavigationStart,
-  Router,
-} from "@angular/router";
-import {LocalStorageService} from "ngx-driver";
+  Router
+} from '@angular/router';
 import {
   debounce,
   interval,
   Subject,
-  takeUntil,
-} from "rxjs";
-import {EmailService} from "./utils";
+  takeUntil
+} from 'rxjs';
+import {
+  EmailService,
+  WrapperObject
+} from './utils';
 
 @Component({
-  selector: "lib-email",
-  templateUrl: "./email.component.html",
-  styleUrls: ["./email.component.scss"],
+  selector: 'lib-email',
+  templateUrl: './email.component.html',
+  styleUrls: ['./email.component.scss']
 })
 export class EmailComponent implements OnInit, OnDestroy {
-  public inputFilter : string = "";
+  public inputFilter : string = '';
   public userQuestionUpdate : Subject<string> = new Subject<string>();
   public chatId : string | null = null;
+  public permission : WrapperObject = {} as WrapperObject;
+  public permissionInbox : { inboxAction : any, labelAction : any } = {} as any;
   private destroy$ : Subject<any> = new Subject<any>();
 
   constructor(private readonly _emailService : EmailService
     , private readonly _router : Router,
-    private readonly _activatedRouter : ActivatedRoute,
-    private readonly _localStorage : LocalStorageService,
+    private readonly _activatedRouter : ActivatedRoute
   ) { }
 
   ngOnInit() : void {
     this.userQuestionUpdate.pipe(
       debounce(() => interval(500)),
-      takeUntil(this.destroy$),
+      takeUntil(this.destroy$)
     )
       .subscribe(typed => {
         typed.length
@@ -49,12 +52,29 @@ export class EmailComponent implements OnInit, OnDestroy {
     this._router.events
       .subscribe((event) => {
         if(event instanceof NavigationEnd || event instanceof NavigationStart) {
-          this.chatId = event.url.split("/")[1];
+          this.chatId = event.url.split('/')[1];
         }
       });
+    this.permission = this._emailService.permission;
+    this._makeObjectToActionAndLabel();
+    console.log(this.permissionInbox);
   }
 
-  public trgger() {
+  private _makeObjectToActionAndLabel() : void {
+    let action = this.permission.inbox.actions as any;
+    let label = this.permission.inbox.label as any;
+    let str : any[] = [];
+    Object.keys(action).forEach((key : any) => {
+      str.push({value: action[key], key: key[0].toUpperCase()+ key.substring(1)});
+    });
+    str.shift()
+    this.permissionInbox.inboxAction = str.filter(r => r.value === true)
+    str = [];
+    Object.keys(label).forEach((key : any) => {
+      str.push({value: label[key], key: key[0].toUpperCase()+ key.substring(1)});
+    });
+    str.shift()
+    this.permissionInbox.labelAction = str.filter(r => r.value === true)
   }
 
   public ngOnDestroy() : void {
