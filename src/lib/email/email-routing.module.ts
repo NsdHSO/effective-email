@@ -1,38 +1,34 @@
-import {NgModule} from "@angular/core";
+import {NgModule} from '@angular/core';
 import {
   RouterModule,
-  Routes,
-} from "@angular/router";
-import {
-  ChatComponent,
-  InboxComponent,
-} from "./component";
-import {EmailComponent} from "./email.component";
-import {EmailResolver} from "./utils/service/email.resolver";
+  Routes
+} from '@angular/router';
+import {EmailComponent} from './email.component';
+import {EmailResolver} from './utils';
 
 const routes : Routes = [
   {
-    path: "",
+    path: '',
     component: EmailComponent,
     children: [
       {
-        path: "",
-        component: InboxComponent,
+        path: '',
+        loadChildren: () => import('./component/inbox/inbox.module').then(m => m.InboxModule),
         resolve: {
-          data: EmailResolver,
-        },
+          data: EmailResolver
+        }
       },
       {
-        path: ":id",
-        component: ChatComponent,
+        path: 'chat',
+        loadChildren: () => import('./component/chat/chat.module').then(m => m.ChatModule)
       },
-    ],
-  },
+    ]
+  }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes),
-  ],
+    RouterModule.forChild(routes)
+  ]
 })
 export class EmailRoutingModule {}

@@ -51,6 +51,7 @@ export class EmailComponent implements OnInit, OnDestroy {
       });
     this._router.events
       .subscribe((event) => {
+
         if(event instanceof NavigationEnd || event instanceof NavigationStart) {
           this.chatId = event.url.split('/')[1];
         }

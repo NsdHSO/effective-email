@@ -5,6 +5,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterOutlet} from "@angular/router";
+import {ChatModule} from './component/chat/chat.module';
 import {InboxModule} from "./component/inbox/inbox.module";
 import {EmailRoutingModule} from "./email-routing.module";
 import {EmailComponent} from "./email.component";
@@ -13,13 +14,14 @@ import {EmailComponent} from "./email.component";
   declarations: [EmailComponent],
   imports: [
     CommonModule,
+    ChatModule,
     EmailRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterOutlet,
-    MatCheckboxModule,
     FormsModule,
     InboxModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCheckboxModule,
+    RouterOutlet,
   ],
 })
 export class EmailModule {}

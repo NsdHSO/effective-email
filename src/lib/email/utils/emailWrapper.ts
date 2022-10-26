@@ -57,3 +57,34 @@ export interface RootObject {
 export interface WrapperObject{
   inbox: RootObject
 }
+
+
+export interface Entity {
+  id: number;
+  name: string;
+  email?: any;
+  label?: any;
+  role?: any;
+  password: string;
+  token?: any;
+  icon?: any;
+}
+
+
+export interface MessageChat {
+  id: number;
+  description: string;
+  receiver: Entity;
+  sender: Entity;
+}
+
+export interface Chat {
+  id: number;
+  title: string;
+  vote: boolean;
+  label: number;
+  typeOfPeople: string;
+  timestamp: Date;
+  visible: boolean;
+  messages: MessageChat[];
+}
