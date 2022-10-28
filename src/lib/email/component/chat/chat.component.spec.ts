@@ -1,17 +1,29 @@
+import {HttpClientModule} from '@angular/common/http';
 import {
   ComponentFixture,
-  TestBed,
-} from "@angular/core/testing";
-import {ChatComponent} from "./chat.component";
+  TestBed
+} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {environment} from '../../../../../../../src/environments/environment';
+import {ChatComponent} from './chat.component';
 
 describe(
-  "ChatComponent",
+  'ChatComponent',
   () => {
     let component : ChatComponent;
     let fixture : ComponentFixture<ChatComponent>;
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         declarations: [ChatComponent],
+        imports: [
+          HttpClientModule,
+          RouterTestingModule
+        ], providers: [
+          {
+            provide: 'env',
+            useValue: environment
+          }
+        ]
       })
         .compileComponents();
       fixture = TestBed.createComponent(ChatComponent);
@@ -19,11 +31,11 @@ describe(
       fixture.detectChanges();
     });
     it(
-      "should create",
+      'should create',
       () => {
         expect(component)
           .toBeTruthy();
-      },
+      }
     );
-  },
+  }
 );

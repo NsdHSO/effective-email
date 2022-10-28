@@ -1,20 +1,32 @@
-import {TestBed} from "@angular/core/testing";
-import {EmailService} from "./email.service";
+import {HttpClientModule} from '@angular/common/http';
+import {TestBed} from '@angular/core/testing';
+import {environment} from '../../../../../../../src/environments/environment';
+import {EmailService} from './email.service';
 
 describe(
-  "EmailService",
+  'EmailService',
   () => {
     let service : EmailService;
     beforeEach(() => {
-      TestBed.configureTestingModule({});
+      TestBed.configureTestingModule({
+        imports: [
+          HttpClientModule
+        ],
+        providers: [
+          {
+            provide: 'env',
+            useValue: environment
+          }
+        ]
+      });
       service = TestBed.inject(EmailService);
     });
     it(
-      "should be created",
+      'should be created',
       () => {
         expect(service)
           .toBeTruthy();
-      },
+      }
     );
-  },
+  }
 );

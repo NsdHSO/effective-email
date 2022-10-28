@@ -1,5 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
+import {MatCardModule} from '@angular/material/card';
 import {ChatComponent} from './chat.component';
 import {ChatRoutingModule} from './chat.routing.module';
 
@@ -7,7 +8,8 @@ import {ChatRoutingModule} from './chat.routing.module';
   declarations: [ChatComponent],
   imports: [
     CommonModule,
-    ChatRoutingModule
+    ChatRoutingModule,
+    MatCardModule
   ]
 })
 export class ChatModule {}

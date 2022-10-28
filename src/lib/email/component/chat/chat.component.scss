@@ -1,0 +1,15 @@
+.container {
+  height: calc(100vh - 24vh);
+  overflow: auto;
+  &__icon{
+    width: 6%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  &__description{
+    max-width: 90%;
+    width: max-content;
+  }
+}

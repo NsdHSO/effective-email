@@ -1,1 +1,13 @@
-<p>chat works!</p>
+<div class="container mt-3">
+  <div class="d-flex my-3"
+       *ngFor="let message of (chatMessaged$ | async)?.messages"
+      [ngClass]="message.receiver.id %2 ===0 ? 'flex-row-reverse ' : ''"
+  >
+    <div class="container__icon">
+      icon
+    </div>
+    <div class="container__description">
+      <mat-card>{{message.description}}</mat-card>
+    </div>
+  </div>
+</div>

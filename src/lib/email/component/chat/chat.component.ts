@@ -8,9 +8,11 @@ import {
   Params
 } from '@angular/router';
 import {
+  Observable,
   Subject,
   takeUntil
 } from 'rxjs';
+import {Chat} from '../../utils';
 import {ChatService} from './services';
 
 @Component({
@@ -19,6 +21,7 @@ import {ChatService} from './services';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  public chatMessaged$ : Observable<Chat> = new Subject<Chat>();
   private _chatId = 0;
   private _destroy$ : Subject<any> = new Subject<any>();
 
@@ -39,9 +42,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() : void {
-    this._chatService.getChatById(this.chatId)
-      .pipe(takeUntil(this._destroy$))
-      .subscribe();
+    this.chatMessaged$ = this._chatService.getChatById(this.chatId);
   }
 
   public ngOnDestroy() : void {

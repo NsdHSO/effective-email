@@ -1,5 +1,4 @@
 .wrapper {
-  margin-top: 1rem;
 
   &__left-side {
 
@@ -15,6 +14,7 @@
   &__right-side {
     display: flex;
     gap: 2rem;
+    height: calc(100vh - 12vh);
 
     & > div:nth-child(n) {
       padding: 1.3rem;
@@ -112,6 +112,10 @@
 
     &__content {
       width: 80%;
+
+      &__round{
+        width: 53rem;
+      }
 
       ::ng-deep {
         mat-icon {

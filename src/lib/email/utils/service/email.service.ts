@@ -10,7 +10,6 @@ import {
 } from 'rxjs';
 import {
   EmailWrapper,
-  RootObject,
   WrapperObject
 } from '../emailWrapper';
 import {WebsocketService} from './websocket.service';
@@ -20,18 +19,17 @@ import {WebsocketService} from './websocket.service';
 })
 export class EmailService {
   public emails : Subject<EmailWrapper> = new Subject<EmailWrapper>();
-  public permission
+  public permission;
 
   constructor(private readonly _httpClient : HttpClient, @Inject(
       'env') private environment : any, private readonly _socket : WebsocketService,
     private readonly _localStorage : LocalStorageService
   ) {
-    this.permission = JSON.parse(_localStorage.geItem('permission')) as WrapperObject
-
+    this.permission = JSON.parse(_localStorage.geItem('permission')) as WrapperObject;
   }
 
   public getEmails(item = 10, page = 0) {
-    this._httpClient.get<EmailWrapper>(`${this.environment.api}/email/${item}/${page}`)
+    return this._httpClient.get<EmailWrapper>(`${this.environment.api}/email/${item}/${page}`)
       .subscribe(emails => {
         if(emails != undefined) {
           this.emails.next(emails);

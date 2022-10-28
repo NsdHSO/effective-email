@@ -70,7 +70,6 @@ export interface Entity {
   icon?: any;
 }
 
-
 export interface MessageChat {
   id: number;
   description: string;

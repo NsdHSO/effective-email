@@ -49,33 +49,39 @@ export class EmailComponent implements OnInit, OnDestroy {
           :
           this._emailService.getEmails();
       });
-    this._router.events
+    this._router.events.pipe(takeUntil(this.destroy$))
       .subscribe((event) => {
-
         if(event instanceof NavigationEnd || event instanceof NavigationStart) {
           this.chatId = event.url.split('/')[1];
         }
       });
     this.permission = this._emailService.permission;
     this._makeObjectToActionAndLabel();
-    console.log(this.permissionInbox);
   }
 
-  private _makeObjectToActionAndLabel() : void {
+  public _makeObjectToActionAndLabel() : void {
     let action = this.permission.inbox.actions as any;
     let label = this.permission.inbox.label as any;
     let str : any[] = [];
-    Object.keys(action).forEach((key : any) => {
-      str.push({value: action[key], key: key[0].toUpperCase()+ key.substring(1)});
-    });
-    str.shift()
-    this.permissionInbox.inboxAction = str.filter(r => r.value === true)
+    Object.keys(action)
+      .forEach((key : any) => {
+        str.push({
+          value: action[key],
+          key: key[0].toUpperCase() + key.substring(1)
+        });
+      });
+    str.shift();
+    this.permissionInbox.inboxAction = str.filter(r => r.value === true);
     str = [];
-    Object.keys(label).forEach((key : any) => {
-      str.push({value: label[key], key: key[0].toUpperCase()+ key.substring(1)});
-    });
-    str.shift()
-    this.permissionInbox.labelAction = str.filter(r => r.value === true)
+    Object.keys(label)
+      .forEach((key : any) => {
+        str.push({
+          value: label[key],
+          key: key[0].toUpperCase() + key.substring(1)
+        });
+      });
+    str.shift();
+    this.permissionInbox.labelAction = str.filter(r => r.value === true);
   }
 
   public ngOnDestroy() : void {
