@@ -8,11 +8,13 @@ import {
   Params
 } from '@angular/router';
 import {
-  Observable,
   Subject,
   takeUntil
 } from 'rxjs';
-import {Chat} from '../../utils';
+import {
+  Chat,
+  Entity
+} from '../../utils';
 import {ChatService} from './services';
 
 @Component({
@@ -21,9 +23,11 @@ import {ChatService} from './services';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  public chatMessaged$ : Observable<Chat> = new Subject<Chat>();
+  public chatMessaged = {} as Chat;
   private _chatId = 0;
   private _destroy$ : Subject<any> = new Subject<any>();
+  private receiver = {} as Entity;
+  private sender = {} as Entity;
 
   public get chatId() : number {
     return this._chatId;
@@ -42,7 +46,19 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() : void {
-    this.chatMessaged$ = this._chatService.getChatById(this.chatId);
+    this._chatService.chatSubject
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(chatMessage => {
+        this.sender = chatMessage.sender;
+        this.receiver = chatMessage.receiver;
+        this.chatMessaged = chatMessage.email;
+      });
+  }
+
+  public sendMessage(event : string) {
+    this._chatService.sendMessage(event, this.sender, this.receiver, this._chatId);
+    console.log(event, this.chatMessaged);
+    console.log(event);
   }
 
   public ngOnDestroy() : void {

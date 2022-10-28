@@ -1,7 +1,7 @@
 <div class="container mt-3">
   <div class="d-flex my-3"
-       *ngFor="let message of (chatMessaged$ | async)?.messages"
-      [ngClass]="message.receiver.id %2 ===0 ? 'flex-row-reverse ' : ''"
+       *ngFor="let message of chatMessaged.messages"
+       [ngClass]="message.receiver.id %2 ===0 ? 'flex-row-reverse ' : ''"
   >
     <div class="container__icon">
       icon
@@ -11,3 +11,5 @@
     </div>
   </div>
 </div>
+<lib-input-chat (messageFormEvent)="sendMessage($event)"></lib-input-chat>
+

@@ -87,3 +87,8 @@ export interface Chat {
   visible: boolean;
   messages: MessageChat[];
 }
+export interface WrapperChat {
+  email: Chat,
+  sender: Entity,
+  receiver: Entity
+}

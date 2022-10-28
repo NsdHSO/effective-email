@@ -3,17 +3,41 @@ import {
   Inject,
   Injectable
 } from '@angular/core';
-import {Observable} from 'rxjs';
-import {Chat} from '../../../utils';
+import {
+  Subject,
+  tap
+} from 'rxjs';
+import {
+  Entity,
+  WrapperChat
+} from '../../../utils';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
+  public chatSubject = new Subject<any>();
+
   constructor(private readonly _httpClient : HttpClient, @Inject(
     'env') private environment : any) { }
 
-  public getChatById(id : number) :Observable<Chat> {
-    return this._httpClient.get<Chat>(`${this.environment.api}/email/${id}`);
+  public getChatById(id : number) {
+    this._httpClient.get<WrapperChat>(`${this.environment.api}/email/${id}`)
+      .subscribe(resp => {
+        this.chatSubject.next(resp);
+      });
+  }
+
+  public sendMessage(description : string, sender : Entity, receiver : Entity, chatId : number) {
+    const bodyMessage = {
+      elienId: sender.id,
+      senderId: receiver.id,
+      message: description
+    };
+    return this._httpClient.put<WrapperChat>(
+      `${this.environment.api}/chat/message/${chatId}`, bodyMessage)
+      .pipe(
+        tap(() => this.getChatById(chatId)))
+      .subscribe();
   }
 }

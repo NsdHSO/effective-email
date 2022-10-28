@@ -1,0 +1,21 @@
+<div class="my-2 d-flex py-1">
+  <div class="flex-grow-1 w-100 me-3">
+    <span class="input w-100" >
+    <input type="text"
+           class="w-100"
+           placeholder="Type new Message"
+           [formControl]="message"
+    >
+    </span>
+  </div>
+  <div>
+    <button mat-button
+            (click)="sendMessage()"
+            class="bg-primary border-1 rounded-4 icon">
+      <mat-icon
+        [svgIcon]="'fa_regular:paper-plane'"
+        class="icon-send"
+      ></mat-icon>
+    </button>
+  </div>
+</div>

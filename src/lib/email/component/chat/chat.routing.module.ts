@@ -4,11 +4,13 @@ import {
   Routes
 } from '@angular/router';
 import {ChatComponent} from './chat.component';
+import {ChatResolver} from './services/resolver/chat.resolver';
 
 const routes : Routes = [
   {
     path: ':id',
-    component: ChatComponent
+    component: ChatComponent,
+    resolve: {data: ChatResolver}
   }
 ];
 
