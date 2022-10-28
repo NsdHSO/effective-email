@@ -1,6 +1,6 @@
 .container {
-  height: calc(100vh - 24vh);
-  overflow: auto;
+  height: 78vh;
+  overflow: auto !important;
   &__icon{
     width: 6%;
     display: flex;

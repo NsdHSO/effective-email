@@ -23,11 +23,25 @@ import {ChatService} from './services';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  public get receiver() : Entity {
+    return this._receiver;
+  }
+
+  public set receiver(value : Entity) {
+    this._receiver = value;
+  }
+  public get sender() : Entity {
+    return this._sender;
+  }
+
+  public set sender(value : Entity) {
+    this._sender = value;
+  }
   public chatMessaged = {} as Chat;
   private _chatId = 0;
   private _destroy$ : Subject<any> = new Subject<any>();
-  private receiver = {} as Entity;
-  private sender = {} as Entity;
+  private _receiver = {} as Entity;
+  private _sender = {} as Entity;
 
   public get chatId() : number {
     return this._chatId;
@@ -49,14 +63,16 @@ export class ChatComponent implements OnInit, OnDestroy {
     this._chatService.chatSubject
       .pipe(takeUntil(this._destroy$))
       .subscribe(chatMessage => {
-        this.sender = chatMessage.sender;
-        this.receiver = chatMessage.receiver;
+        this._sender = chatMessage.sender;
+        this._receiver = chatMessage.
+          receiver;
         this.chatMessaged = chatMessage.email;
+        console.log(chatMessage, this.receiver)
       });
   }
 
   public sendMessage(event : string) {
-    this._chatService.sendMessage(event, this.sender, this.receiver, this._chatId);
+    this._chatService.sendMessage(event, this._sender, this._receiver, this._chatId);
     console.log(event, this.chatMessaged);
     console.log(event);
   }

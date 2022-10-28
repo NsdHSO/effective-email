@@ -114,7 +114,9 @@
       width: 80%;
 
       &__round{
-        width: 53rem;
+        &__outlet{
+          height: 80vh;
+        }
       }
 
       ::ng-deep {
