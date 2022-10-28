@@ -25,7 +25,7 @@
         <div class="wrapper__right-side__menu__email-item__sub-item">
           <div *ngFor="let subItem of permissionInbox.inboxAction"
                class="pe-auto">
-            <div class="w-100"
+            <div class="w-100 col-2"
                  *ngIf="subItem.value">
               <div>
                 <mat-icon
@@ -33,12 +33,12 @@
                   class="container__header__icon"
                 ></mat-icon>
                 <span>
-                {{subItem.key}}
-              </span>
+                  {{subItem.key}}
+                </span>
               </div>
-              <span>
-              number
-            </span>
+              <span class="col-3">
+               number
+              </span>
             </div>
           </div>
         </div>
@@ -52,12 +52,12 @@
         <div class="wrapper__right-side__menu__email-item__sub-item">
           <div *ngFor="let subItem of permissionInbox.labelAction">
             <div
-              *ngIf="subItem.value && subItem.key !== 'NewLabel' ">
+              *ngIf="subItem.value && subItem.key !== 'NewLabel' " class="w-100">
               <mat-icon
                 [svgIcon]="'fa_solid:plus'"
-                class="container__header__icon"
+                class="container__header__icon col-1"
               ></mat-icon>
-              <span>
+              <span class="col-9">
                 {{subItem.key}}
               </span>
             </div>
