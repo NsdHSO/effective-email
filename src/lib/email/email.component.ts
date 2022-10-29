@@ -36,9 +36,18 @@ export class EmailComponent implements OnInit, OnDestroy {
   constructor(private readonly _emailService : EmailService
     , private readonly _router : Router,
     private readonly _activatedRouter : ActivatedRoute
-  ) { }
+  ) {
+    this._router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // subscribing to NavigationEnd which is about to happen
+        console.log(event)
+      }
+    });
+  }
 
   ngOnInit() : void {
+
+
     this.userQuestionUpdate.pipe(
       debounce(() => interval(500)),
       takeUntil(this.destroy$)
@@ -52,7 +61,9 @@ export class EmailComponent implements OnInit, OnDestroy {
     this._router.events.pipe(takeUntil(this.destroy$))
       .subscribe((event) => {
         if(event instanceof NavigationEnd || event instanceof NavigationStart) {
-          this.chatId = event.url.split('/')[1];
+          this.chatId = event.url.split('/')[ event.url.split('/').length -1]
+          console.log(this.chatId)
+
         }
       });
     this.permission = this._emailService.permission;
@@ -87,5 +98,9 @@ export class EmailComponent implements OnInit, OnDestroy {
   public ngOnDestroy() : void {
     this.destroy$.next({});
     this.destroy$.complete();
+  }
+
+  public navigateBack() : void {
+    this._router.navigateByUrl('/email')
   }
 }

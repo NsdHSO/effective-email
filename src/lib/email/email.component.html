@@ -83,7 +83,8 @@
     <div class="mat-elevation-z2 wrapper__right-side__content jumbotron">
       <div class="wrapper__right-side__content__round">
         <div class="d-flex justify-content-between px-3">
-          <div class="rounded-5 bg-secondary bg-opacity-25 px-3 py-2">
+          <div  >
+            <div *ngIf="chatId === 'email'; else chatBack" class="rounded-5 bg-secondary bg-opacity-25 px-3 py-2">
             <mat-icon
               [svgIcon]="'fa_brands:searchengin'"
               class="container__header__icon"
@@ -95,6 +96,15 @@
                    name="userQuestion"
                    style="outline: none"
                    type="text"/>
+            </div>
+            <ng-template #chatBack>
+              <button mat-button (click)="navigateBack()">
+                <mat-icon
+                  [svgIcon]="'fa_solid:arrow-left'"
+                  class="container__header__icon"
+                ></mat-icon>
+              </button>
+            </ng-template>
           </div>
           <div class="pe-3">
             <button *ngFor="let icon of [].constructor(3)"
@@ -109,7 +119,7 @@
         <div class="wrapper__right-side__content__round__outlet">
           <router-outlet></router-outlet>
         </div>
-        <div *ngIf="!chatId"
+        <div *ngIf="chatId === 'email'"
              class="d-flex justify-content-end pt-3 pe-3">
           <button
             mat-button>
