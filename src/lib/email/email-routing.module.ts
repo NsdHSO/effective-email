@@ -8,19 +8,12 @@ import {EmailResolver} from './utils';
 
 const routes : Routes = [
   {
-    path: '',
+    path: 'email',
     component: EmailComponent,
     children: [
       {
-        path: '',
+        path: 'inbox',
         loadChildren: () => import('./component/inbox/inbox.module').then(m => m.InboxModule),
-        resolve: {
-          data: EmailResolver
-        }
-      },
-      {
-        path: 'chat',
-        loadChildren: () => import('./component/chat/chat.module').then(m => m.ChatModule)
       },
     ]
   }

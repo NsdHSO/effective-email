@@ -128,3 +128,15 @@
     }
   }
 }
+
+.active-link{
+  background: #e6eeff;
+  border-radius: 8px;
+  color: #5b8dff !important;
+
+  div {
+    color: #5b8dff !important;
+    font-weight: 700;
+  }
+  opacity: 0.9;
+}

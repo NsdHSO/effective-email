@@ -8,9 +8,9 @@ import {ChatResolver} from './services/resolver/chat.resolver';
 
 const routes : Routes = [
   {
-    path: ':id',
+    path: '',
     component: ChatComponent,
-    resolve: {data: ChatResolver}
+    resolve: {data: ChatResolver},
   }
 ];
 

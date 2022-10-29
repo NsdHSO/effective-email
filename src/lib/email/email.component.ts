@@ -62,8 +62,6 @@ export class EmailComponent implements OnInit, OnDestroy {
       .subscribe((event) => {
         if(event instanceof NavigationEnd || event instanceof NavigationStart) {
           this.chatId = event.url.split('/')[ event.url.split('/').length -1]
-          console.log(this.chatId)
-
         }
       });
     this.permission = this._emailService.permission;
@@ -101,6 +99,6 @@ export class EmailComponent implements OnInit, OnDestroy {
   }
 
   public navigateBack() : void {
-    this._router.navigateByUrl('/email')
+    this._router.navigateByUrl('/email/inbox')
   }
 }

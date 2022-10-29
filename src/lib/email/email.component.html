@@ -24,7 +24,10 @@
         </div>
         <div class="wrapper__right-side__menu__email-item__sub-item">
           <div *ngFor="let subItem of permissionInbox.inboxAction"
-               class="pe-auto">
+               class="pe-auto"
+              [routerLink]="subItem.key[0]?.toLowerCase() + subItem.key?.substring(1)"
+               routerLinkActive="active-link"
+          >
             <div class="w-100 col-2"
                  *ngIf="subItem.value">
               <div>
@@ -53,6 +56,7 @@
           <div *ngFor="let subItem of permissionInbox.labelAction">
             <div
               *ngIf="subItem.value && subItem.key !== 'NewLabel' " class="w-100">
+
               <mat-icon
                 [svgIcon]="'fa_solid:plus'"
                 class="container__header__icon col-1"
@@ -84,7 +88,7 @@
       <div class="wrapper__right-side__content__round">
         <div class="d-flex justify-content-between px-3">
           <div  >
-            <div *ngIf="chatId === 'email'; else chatBack" class="rounded-5 bg-secondary bg-opacity-25 px-3 py-2">
+            <div *ngIf="chatId === 'inbox'; else chatBack" class="rounded-5 bg-secondary bg-opacity-25 px-3 py-2">
             <mat-icon
               [svgIcon]="'fa_brands:searchengin'"
               class="container__header__icon"

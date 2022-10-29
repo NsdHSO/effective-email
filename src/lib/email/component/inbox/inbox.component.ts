@@ -30,6 +30,6 @@ export class InboxComponent implements OnInit {
   }
 
   public openInChat(subItem : Email) : void {
-    this._router.navigateByUrl(`email/chat/${subItem.id}`);
+    this._router.navigateByUrl(`email/inbox/${subItem.id}`);
   }
 }
