@@ -4,7 +4,6 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  ActivatedRoute,
   NavigationEnd,
   NavigationStart,
   Router
@@ -34,20 +33,11 @@ export class EmailComponent implements OnInit, OnDestroy {
   private destroy$ : Subject<any> = new Subject<any>();
 
   constructor(private readonly _emailService : EmailService
-    , private readonly _router : Router,
-    private readonly _activatedRouter : ActivatedRoute
+    , private readonly _router : Router
   ) {
-    this._router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        // subscribing to NavigationEnd which is about to happen
-        console.log(event)
-      }
-    });
   }
 
-  ngOnInit() : void {
-
-
+  ngOnInit()  {
     this.userQuestionUpdate.pipe(
       debounce(() => interval(500)),
       takeUntil(this.destroy$)
@@ -61,7 +51,7 @@ export class EmailComponent implements OnInit, OnDestroy {
     this._router.events.pipe(takeUntil(this.destroy$))
       .subscribe((event) => {
         if(event instanceof NavigationEnd || event instanceof NavigationStart) {
-          this.chatId = event.url.split('/')[ event.url.split('/').length -1]
+          this.chatId = event.url.split('/')[event.url.split('/').length - 1];
         }
       });
     this.permission = this._emailService.permission;
@@ -99,6 +89,6 @@ export class EmailComponent implements OnInit, OnDestroy {
   }
 
   public navigateBack() : void {
-    this._router.navigateByUrl('/email/inbox')
+    this._router.navigateByUrl('/email/inbox');
   }
 }

@@ -1,13 +1,21 @@
 <div class="container mt-3">
-  <div class="d-flex my-3"
-       *ngFor="let message of chatMessaged.messages"
-       [ngClass]="message.sender.id === sender.id  ? 'flex-row-reverse ' : ''"
-  >
-    <div class="container__icon">
-      icon
-    </div>
-    <div class="container__description">
-      <mat-card>{{message.description}}</mat-card>
+  <div class="search-results"
+       infinite-scroll
+       [infiniteScrollDistance]="scrollDistance"
+       [infiniteScrollUpDistance]="scrollUpDistance"
+       [infiniteScrollThrottle]="throttle"
+       (scrolled)="onScrollDown()"
+       (scrolledUp)="onUp()">
+    <div class="d-flex my-3"
+         *ngFor="let message of chatMessaged?.messages"
+         [ngClass]="message.sender.id === sender.id  ? 'flex-row-reverse ' : ''"
+    >
+      <div class="container__icon slideInRight">
+        icon
+      </div>
+      <div class="container__description slideInRight">
+        <mat-card>{{message.description}}</mat-card>
+      </div>
     </div>
   </div>
 </div>

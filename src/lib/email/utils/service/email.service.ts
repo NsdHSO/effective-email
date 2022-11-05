@@ -28,7 +28,7 @@ export class EmailService {
     this.permission = JSON.parse(_localStorage.geItem('permission')) as WrapperObject;
   }
 
-  public getEmails(item = 10, page = 0) {
+  public getEmails(item = 30, page = 0) {
     return this._httpClient.get<EmailWrapper>(`${this.environment.api}/email/${item}/${page}`)
       .subscribe(emails => {
         if(emails != undefined) {
@@ -47,7 +47,6 @@ export class EmailService {
             emails: emails as any,
             total: 0
           } as EmailWrapper;
-          debugger
           this.emails.next(newEmail);
           return of(true);
         }
