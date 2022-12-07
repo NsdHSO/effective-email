@@ -7,8 +7,8 @@
   <div class="wrapper__right-side px-3">
     <div class="mat-elevation-z2 wrapper__right-side__menu">
       <div class="wrapper__right-side__menu__new">
-        <button mat-button
-                *ngIf="permission.inbox.actions.newEmail">
+        <button *ngIf="permission.inbox.actions.newEmail"
+                mat-button>
           <mat-icon
             [svgIcon]="'fa_solid:plus'"
             class="container__header__icon"
@@ -24,12 +24,12 @@
         </div>
         <div class="wrapper__right-side__menu__email-item__sub-item">
           <div *ngFor="let subItem of permissionInbox.inboxAction"
+               [routerLink]="subItem.key[0]?.toLowerCase() + subItem.key?.substring(1)"
                class="pe-auto"
-              [routerLink]="subItem.key[0]?.toLowerCase() + subItem.key?.substring(1)"
                routerLinkActive="active-link"
           >
-            <div class="w-100 col-2"
-                 *ngIf="subItem.value">
+            <div *ngIf="subItem.value"
+                 class="w-100 col-2">
               <div>
                 <mat-icon
                   [svgIcon]="'fa_solid:plus'"
@@ -55,8 +55,8 @@
         <div class="wrapper__right-side__menu__email-item__sub-item">
           <div *ngFor="let subItem of permissionInbox.labelAction">
             <div
-              *ngIf="subItem.value && subItem.key !== 'NewLabel' " class="w-100">
-
+              *ngIf="subItem.value && subItem.key !== 'NewLabel' "
+              class="w-100">
               <mat-icon
                 [svgIcon]="'fa_solid:plus'"
                 class="container__header__icon col-1"
@@ -65,8 +65,8 @@
                 {{subItem.key}}
               </span>
             </div>
-
-            <div class="wrapper__right-side__menu__email-item__sub-item__new-label pt-4" *ngIf="subItem.key == 'NewLabel' ">
+            <div *ngIf="subItem.key == 'NewLabel' "
+                 class="wrapper__right-side__menu__email-item__sub-item__new-label pt-4">
               <div>
                 <button mat-button>
                   <mat-icon
@@ -81,28 +81,29 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
     <div class="mat-elevation-z2 wrapper__right-side__content jumbotron">
       <div class="wrapper__right-side__content__round">
         <div class="d-flex justify-content-between px-3">
-          <div  >
-            <div *ngIf="chatId === 'inbox'; else chatBack" class="rounded-5 bg-secondary bg-opacity-25 px-3 py-2">
-            <mat-icon
-              [svgIcon]="'fa_brands:searchengin'"
-              class="container__header__icon"
-            ></mat-icon>
-            <input (ngModelChange)="this.userQuestionUpdate.next($event)"
-                   [(ngModel)]="inputFilter"
-                   class="bg-secondary bg-opacity-10 rounded-2  px-1 text-secondary"
-                   id="userQuestions"
-                   name="userQuestion"
-                   style="outline: none"
-                   type="text"/>
+          <div>
+            <div *ngIf="chatId === 'inbox'; else chatBack"
+                 class="rounded-5 bg-secondary bg-opacity-25 px-3 py-2">
+              <mat-icon
+                [svgIcon]="'fa_brands:searchengin'"
+                class="container__header__icon"
+              ></mat-icon>
+              <input (ngModelChange)="this.userQuestionUpdate.next($event)"
+                     [(ngModel)]="inputFilter"
+                     class="bg-secondary bg-opacity-10 rounded-2  px-1 text-secondary"
+                     id="userQuestions"
+                     name="userQuestion"
+                     style="outline: none"
+                     type="text"/>
             </div>
             <ng-template #chatBack>
-              <button mat-button (click)="navigateBack()">
+              <button (click)="navigateBack()"
+                      mat-button>
                 <mat-icon
                   [svgIcon]="'fa_solid:arrow-left'"
                   class="container__header__icon"

@@ -12,12 +12,13 @@ const routes : Routes = [
     component: InboxComponent,
     resolve: {
       data: EmailResolver
-    },
+    }
   },
   {
     path: ':id',
-    loadChildren: () => import('./../chat/chat.module').then(m => m.ChatModule)
-  },
+    loadChildren: () => import('./../chat/chat.module').then(
+      m => m.ChatModule)
+  }
 ];
 
 @NgModule({

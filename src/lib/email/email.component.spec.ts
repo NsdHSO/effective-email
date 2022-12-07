@@ -50,7 +50,8 @@ describe(
         ]
       })
         .compileComponents();
-      fixture = TestBed.createComponent(EmailComponent);
+      fixture = TestBed.createComponent(
+        EmailComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     }));
@@ -68,16 +69,27 @@ describe(
       }
     );
     it('should be call be', function() {
-      spyOn(component, '_makeObjectToActionAndLabel');
+      spyOn(
+        component,
+        '_makeObjectToActionAndLabel'
+      );
       component._makeObjectToActionAndLabel();
-      expect(component._makeObjectToActionAndLabel)
+      expect(
+        component._makeObjectToActionAndLabel)
         .toHaveBeenCalled();
     });
-    it('should be init', fakeAsync(() => {
-      spyOn(component, '_makeObjectToActionAndLabel');
-      component.ngOnInit();
-      expect(component._makeObjectToActionAndLabel)
-        .toHaveBeenCalledOnceWith();
-    }));
+    it(
+      'should be init',
+      fakeAsync(() => {
+        spyOn(
+          component,
+          '_makeObjectToActionAndLabel'
+        );
+        component.ngOnInit();
+        expect(
+          component._makeObjectToActionAndLabel)
+          .toHaveBeenCalledOnceWith();
+      })
+    );
   }
 );

@@ -10,14 +10,17 @@ import {OnScrollDirective} from './directive/on-scroll.directive';
 import {InputChatComponent} from './input-chat/input-chat.component';
 
 @NgModule({
-  declarations: [ChatComponent, InputChatComponent, OnScrollDirective],
+  declarations: [
+    ChatComponent, InputChatComponent,
+    OnScrollDirective
+  ],
   imports: [
     CommonModule,
     ChatRoutingModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ChatModule {}

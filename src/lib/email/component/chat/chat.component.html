@@ -1,11 +1,11 @@
 <div class="container mt-3">
-  <div class="search-results"
+  <div (appScroll)="onScrollDown()"
+       class="search-results"
        libOnScroll
-       (appScroll)="onScrollDown()"
   >
-    <div class="d-flex my-3"
-         *ngFor="let message of chatMessaged?.messages"
+    <div *ngFor="let message of chatMessaged?.messages"
          [ngClass]="message.sender.id === sender.id  ? 'flex-row-reverse ' : ''"
+         class="d-flex my-3"
     >
       <div class="container__icon slideInRight">
         icon

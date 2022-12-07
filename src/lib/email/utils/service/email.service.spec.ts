@@ -19,7 +19,8 @@ describe(
           }
         ]
       });
-      service = TestBed.inject(EmailService);
+      service = TestBed.inject(
+        EmailService);
     });
     it(
       'should be created',

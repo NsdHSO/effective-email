@@ -37,21 +37,25 @@ export class EmailComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  ngOnInit()  {
+  ngOnInit() {
     this.userQuestionUpdate.pipe(
       debounce(() => interval(500)),
       takeUntil(this.destroy$)
     )
       .subscribe(typed => {
         typed.length
-          ? this._emailService.getFilteredData(typed)
+          ? this._emailService.getFilteredData(
+            typed)
           :
           this._emailService.getEmails();
       });
-    this._router.events.pipe(takeUntil(this.destroy$))
+    this._router.events.pipe(
+      takeUntil(this.destroy$))
       .subscribe((event) => {
         if(event instanceof NavigationEnd || event instanceof NavigationStart) {
-          this.chatId = event.url.split('/')[event.url.split('/').length - 1];
+          this.chatId = event.url.split(
+            '/')[event.url.split(
+            '/').length - 1];
         }
       });
     this.permission = this._emailService.permission;
@@ -66,29 +70,34 @@ export class EmailComponent implements OnInit, OnDestroy {
       .forEach((key : any) => {
         str.push({
           value: action[key],
-          key: key[0].toUpperCase() + key.substring(1)
+          key: key[0].toUpperCase() + key.substring(
+            1)
         });
       });
     str.shift();
-    this.permissionInbox.inboxAction = str.filter(r => r.value === true);
+    this.permissionInbox.inboxAction = str.filter(
+      r => r.value === true);
     str = [];
     Object.keys(label)
       .forEach((key : any) => {
         str.push({
           value: label[key],
-          key: key[0].toUpperCase() + key.substring(1)
+          key: key[0].toUpperCase() + key.substring(
+            1)
         });
       });
     str.shift();
-    this.permissionInbox.labelAction = str.filter(r => r.value === true);
+    this.permissionInbox.labelAction = str.filter(
+      r => r.value === true);
+  }
+
+  public navigateBack() : void {
+    this._router.navigateByUrl(
+      '/email/inbox');
   }
 
   public ngOnDestroy() : void {
     this.destroy$.next({});
     this.destroy$.complete();
-  }
-
-  public navigateBack() : void {
-    this._router.navigateByUrl('/email/inbox');
   }
 }

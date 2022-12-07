@@ -1,14 +1,15 @@
 .container {
   height: 78vh;
   overflow: auto !important;
-  &__icon{
+
+  &__icon {
     width: 6%;
     display: flex;
     align-items: flex-end;
     justify-content: center;
   }
 
-  &__description{
+  &__description {
     max-width: 90%;
     width: max-content;
   }

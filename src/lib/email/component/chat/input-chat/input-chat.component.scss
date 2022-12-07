@@ -1,14 +1,14 @@
 input {
   font-family: inherit;
-  line-height:inherit;
-  color:#2e3750;
-  min-width:12em;
+  line-height: inherit;
+  color: #2e3750;
+  min-width: 12em;
 }
 
 .input {
 
   // needs to be relative so the :focus span is positioned correctly
-  position:relative;
+  position: relative;
 
   // bigger font size for demo purposes
   font-size: 1.5em;
@@ -50,20 +50,21 @@ input {
     transition: transform .5s, opacity .25s;
     opacity: 0; // is hidden by default
 
-    position:absolute;
+    position: absolute;
     z-index: 0; // needs to be below the field (would block input otherwise)
-    margin:4px; // a bit bigger than .input padding, this prevents background color pixels shining through
-    left:0;
-    top:0;
-    right:0;
-    bottom:0;
+    margin: 4px; // a bit bigger than .input padding, this prevents background color pixels shining through
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     border-radius: inherit;
     pointer-events: none; // this allows the user to click through this element, as the shadow is rather wide it might overlap with other fields and we don't want to block those.
   }
 }
-.icon{
-  &-send{
-    ::ng-deep{
+
+.icon {
+  &-send {
+    ::ng-deep {
       fill: white;
     }
   }

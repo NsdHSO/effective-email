@@ -10,7 +10,7 @@ const routes : Routes = [
   {
     path: '',
     component: ChatComponent,
-    resolve: {data: ChatResolver},
+    resolve: {data: ChatResolver}
   }
 ];
 

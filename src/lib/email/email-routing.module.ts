@@ -18,7 +18,8 @@ const routes : Routes = [
     children: [
       {
         path: 'inbox',
-        loadChildren: () => import('./component/inbox/inbox.module').then(m => m.InboxModule)
+        loadChildren: () => import('./component/inbox/inbox.module').then(
+          m => m.InboxModule)
       }
     ]
   }

@@ -11,14 +11,16 @@ describe(
       TestBed.configureTestingModule({
         imports: [
           HttpClientModule
-        ], providers: [
+        ],
+        providers: [
           {
             provide: 'env',
             useValue: environment
           }
         ]
       });
-      resolver = TestBed.inject(EmailResolver);
+      resolver = TestBed.inject(
+        EmailResolver);
     });
     it(
       'should be created',

@@ -70,9 +70,12 @@ export class ChatComponent implements OnInit, OnDestroy {
     private readonly _chatService : ChatService,
     private readonly _changeDetection : ChangeDetectorRef
   ) {
-    this._activateRouter.params.pipe(takeUntil(this._destroy$))
-      .subscribe((res : Params) => {this._chatId = res['id'];});
-    this.scrollCallback = this.getStories.bind(this);
+    this._activateRouter.params.pipe(
+      takeUntil(this._destroy$))
+      .subscribe(
+        (res : Params) => {this._chatId = res['id'];});
+    this.scrollCallback = this.getStories.bind(
+      this);
   }
 
   public ngOnInit() : void {
@@ -86,20 +89,25 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   getStories() {
-    this._chatService.getChatById(this.chatId, 20, this.currentPage);
+    this._chatService.getChatById(
+      this.chatId, 20,
+      this.currentPage
+    );
     this.processData();
   }
 
   public sendMessage(event : string) {
-    this._chatService.sendMessage(event, this._sender, this._receiver, this._chatId);
+    this._chatService.sendMessage(
+      event, this._sender,
+      this._receiver, this._chatId
+    );
   }
 
-  onScrollDown () {
-    this._changeDetection.detectChanges()
-
+  onScrollDown() {
+    this._changeDetection.detectChanges();
     console.log('scrolled down!!');
-    this.getStories()
-    this._changeDetection.detectChanges()
+    this.getStories();
+    this._changeDetection.detectChanges();
   }
 
   public ngOnDestroy() : void {

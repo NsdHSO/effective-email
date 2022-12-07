@@ -1,29 +1,31 @@
 import {
   ComponentFixture,
-  TestBed,
-} from "@angular/core/testing";
-import {TrafficLightComponent} from "./traffic-light.component";
+  TestBed
+} from '@angular/core/testing';
+import {TrafficLightComponent} from './traffic-light.component';
 
 describe(
-  "TrafficLightComponent",
+  'TrafficLightComponent',
   () => {
     let component : TrafficLightComponent;
     let fixture : ComponentFixture<TrafficLightComponent>;
     beforeEach(async () => {
-      await TestBed.configureTestingModule({
-        declarations: [TrafficLightComponent],
-      })
+      await TestBed.configureTestingModule(
+        {
+          declarations: [TrafficLightComponent]
+        })
         .compileComponents();
-      fixture = TestBed.createComponent(TrafficLightComponent);
+      fixture = TestBed.createComponent(
+        TrafficLightComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
     it(
-      "should create",
+      'should create',
       () => {
         expect(component)
           .toBeTruthy();
-      },
+      }
     );
-  },
+  }
 );

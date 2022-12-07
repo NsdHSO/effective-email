@@ -13,20 +13,23 @@ describe(
     let component : ChatComponent;
     let fixture : ComponentFixture<ChatComponent>;
     beforeEach(async () => {
-      await TestBed.configureTestingModule({
-        declarations: [ChatComponent],
-        imports: [
-          HttpClientModule,
-          RouterTestingModule
-        ], providers: [
-          {
-            provide: 'env',
-            useValue: environment
-          }
-        ]
-      })
+      await TestBed.configureTestingModule(
+        {
+          declarations: [ChatComponent],
+          imports: [
+            HttpClientModule,
+            RouterTestingModule
+          ],
+          providers: [
+            {
+              provide: 'env',
+              useValue: environment
+            }
+          ]
+        })
         .compileComponents();
-      fixture = TestBed.createComponent(ChatComponent);
+      fixture = TestBed.createComponent(
+        ChatComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });

@@ -21,15 +21,21 @@ export class EmailService {
   public emails : Subject<EmailWrapper> = new Subject<EmailWrapper>();
   public permission;
 
-  constructor(private readonly _httpClient : HttpClient, @Inject(
-      'env') private environment : any, private readonly _socket : WebsocketService,
+  constructor(private readonly _httpClient : HttpClient,
+    @Inject(
+      'env') private environment : any,
+    private readonly _socket : WebsocketService,
     private readonly _localStorage : LocalStorageService
   ) {
-    this.permission = JSON.parse(_localStorage.geItem('permission')) as WrapperObject;
+    this.permission = JSON.parse(
+      _localStorage.geItem(
+        'permission')) as WrapperObject;
   }
 
-  public getEmails(item = 30, page = 0) {
-    return this._httpClient.get<EmailWrapper>(`${this.environment.api}/email/${item}/${page}`)
+  public getEmails(
+    item = 30, page = 0) {
+    return this._httpClient.get<EmailWrapper>(
+      `${this.environment.api}/email/${item}/${page}`)
       .subscribe(emails => {
         if(emails != undefined) {
           this.emails.next(emails);
@@ -40,7 +46,8 @@ export class EmailService {
   }
 
   public getFilteredData(query : string) {
-    this._httpClient.get<EmailWrapper>(`${this.environment.api}/email/search/${query}`)
+    this._httpClient.get<EmailWrapper>(
+      `${this.environment.api}/email/search/${query}`)
       .subscribe(emails => {
         if(emails != undefined) {
           const newEmail = {

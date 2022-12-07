@@ -9,7 +9,10 @@ import {InboxComponent} from './inbox.component';
 import {InboxRoutingModule} from './inbox.routing.module';
 
 @NgModule({
-  declarations: [InboxComponent, TrafficLightComponent],
+  declarations: [
+    InboxComponent,
+    TrafficLightComponent
+  ],
   imports: [
     CommonModule,
     MatCheckboxModule,
