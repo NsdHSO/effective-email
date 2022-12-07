@@ -4,17 +4,22 @@ import {
   Routes
 } from '@angular/router';
 import {EmailComponent} from './email.component';
-import {EmailResolver} from './utils';
 
 const routes : Routes = [
   {
-    path: 'email',
+    path: '',
+    pathMatch: 'full',
+    redirectTo: ''
+  }
+  ,
+  {
+    path: '',
     component: EmailComponent,
     children: [
       {
         path: 'inbox',
-        loadChildren: () => import('./component/inbox/inbox.module').then(m => m.InboxModule),
-      },
+        loadChildren: () => import('./component/inbox/inbox.module').then(m => m.InboxModule)
+      }
     ]
   }
 ];

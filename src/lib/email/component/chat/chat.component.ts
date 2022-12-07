@@ -95,14 +95,11 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   onScrollDown () {
+    this._changeDetection.detectChanges()
+
     console.log('scrolled down!!');
-
-
-  }
-
-  onUp() {
-    console.log('scrolled up!');
-
+    this.getStories()
+    this._changeDetection.detectChanges()
   }
 
   public ngOnDestroy() : void {

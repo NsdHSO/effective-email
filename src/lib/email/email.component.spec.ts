@@ -2,8 +2,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {
   ComponentFixture,
   fakeAsync,
-  TestBed,
-  tick
+  TestBed
 } from '@angular/core/testing';
 import {expect} from '@angular/flex-layout/_private-utils/testing';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -32,8 +31,8 @@ describe(
   () => {
     let component : EmailComponent;
     let fixture : ComponentFixture<EmailComponent>;
-    beforeEach(fakeAsync( () => {
-       TestBed.configureTestingModule({
+    beforeEach(fakeAsync(() => {
+      TestBed.configureTestingModule({
         declarations: [EmailComponent],
         imports: [
           HttpClientModule,
@@ -70,14 +69,15 @@ describe(
     );
     it('should be call be', function() {
       spyOn(component, '_makeObjectToActionAndLabel');
-      component._makeObjectToActionAndLabel()
+      component._makeObjectToActionAndLabel();
       expect(component._makeObjectToActionAndLabel)
-        .toHaveBeenCalled()
+        .toHaveBeenCalled();
     });
-    it('should be init', fakeAsync (() => {
+    it('should be init', fakeAsync(() => {
       spyOn(component, '_makeObjectToActionAndLabel');
-      component.ngOnInit()
-      expect(component._makeObjectToActionAndLabel).toHaveBeenCalledOnceWith()
+      component.ngOnInit();
+      expect(component._makeObjectToActionAndLabel)
+        .toHaveBeenCalledOnceWith();
     }));
   }
 );

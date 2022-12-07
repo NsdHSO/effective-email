@@ -1,10 +1,13 @@
 import {HttpClient} from '@angular/common/http';
 import {
   Inject,
-  Injectable
+  Injectable,
+  OnDestroy
 } from '@angular/core';
 import {
   BehaviorSubject,
+  Subject,
+  takeUntil,
   tap
 } from 'rxjs';
 import {
@@ -17,17 +20,16 @@ import {
 })
 export class ChatService {
   public chatSubject = new BehaviorSubject({} as WrapperChat)
-
   constructor(private readonly _httpClient : HttpClient, @Inject(
     'env') private environment : any) { }
 
-  public getChatById(id : number, item : number = 20, skip : number = 0) {
+  public getChatById(id : number, item : number = 15, skip : number = 0) {
     this._httpClient.get<WrapperChat>(
       `${this.environment.api}/email/${id}/${item}/${skip || 0}`)
       .subscribe(resp => {
         if(this.chatSubject.getValue().email?.messages !== undefined) {
           resp.email.messages = [
-            ...resp.email?.messages, ...this.chatSubject.getValue().email?.messages
+             ...this.chatSubject.getValue().email?.messages,...resp.email?.messages,
           ]
         }
         this.chatSubject.next(resp);
